@@ -52,7 +52,7 @@ function get_response_display() {
 				   $resp .= '<a class="' . implode(' ',get_kind_class ( '', 'u' )) . '"href="' . $response_url . '">' . $response_title . '</a>';
 				}
 			else{
-				$resp .= '<br />' . $embed_code;
+				$resp .= '<br />' . '<div class="embeds">' . $embed_code . '</div>';
 				$resp .= '<br /><a class="' . implode(' ',get_kind_class ( 'h-cite empty', 'u' )) . '" href="' . $response_url . '"></a>';
 			   }
 		  	$c = '<div class="response">' . $resp . '</div>';
