@@ -94,12 +94,13 @@ function responsebox_save_post_meta( $post_id ) {
         update_post_meta( $post_id, 'response_title', esc_attr( $_POST[ 'response_title' ] ) );
     }
 	if( isset( $_POST[ 'response_quote' ] ) ) {
-        update_post_meta( $post_id, 'response_quote', esc_attr( $_POST[ 'response_quote' ] ) );
+        update_post_meta( $post_id, 'response_quote', wp_kses_post( (string) $_POST[ 'response_quote' ] ) );
     }
 
 }
 
-add_action( 'save_post', 'responsebox_save_post_meta' );
+add_action( 'save_post', 'responsebox_save_post_meta', 5 );
+add_action( 'publish_post', 'responsebox_save_post_meta', 5 );
 
 // add_action( 'add_meta_boxes', 'make_wp_editor_movable', 0 );
 function make_wp_editor_movable() {
