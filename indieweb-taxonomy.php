@@ -32,12 +32,25 @@ function kindstyle_load() {
         wp_enqueue_style( 'kind-style', plugin_dir_url( __FILE__ ) . 'css/kind-style.css');
   }
 
+function it_publish ( $ID, $post)
+  {
+     $response_url = get_post_meta($ID, 'response_url', true);
+     if (!empty($response_url))
+	 {
+     		send_webmention(get_permalink($ID), $response_url);
+ 	 }
+  }
+
+
+add_filter('publish_post', 'it_publish');
+
+
 
 add_action( 'init', 'register_taxonomy_kind' );
 
 function register_taxonomy_kind() {
 
-    $labels = array( 
+        $labels = array( 
         'name' => _x( 'Kinds', 'kind' ),
         'singular_name' => _x( 'Kind', 'kind' ),
         'search_items' => _x( 'Search Kinds', 'kind' ),
@@ -188,7 +201,5 @@ function add_indieweb_taxonomy_options_to_menu(){
 }
 
 add_action('admin_menu', 'add_indieweb_taxonomy_options_to_menu');
-
-
 
 ?>
