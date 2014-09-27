@@ -32,7 +32,7 @@ function kindstyle_load() {
         wp_enqueue_style( 'kind-style', plugin_dir_url( __FILE__ ) . 'css/kind-style.css');
   }
 
-function it_publish ( $ID, $post)
+function it_publish ( $ID, $post=null)
   {
      $response_url = get_post_meta($ID, 'response_url', true);
      if (!empty($response_url))
